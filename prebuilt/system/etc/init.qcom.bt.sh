@@ -89,17 +89,13 @@ esac
 
 eval $(/system/bin/hci_qcomm_init -e $PWR_CLASS $LE_PWR_CLASS && echo "exit_code_hci_qcomm_init=0" || echo "exit_code_hci_qcomm_init=1")
 
-# /* < DTS2010101901100 xuhui 20101021 begin */ 
 case $exit_code_hci_qcomm_init in
   0) logi "Bluetooth QSoC firmware download succeeded, $BTS_DEVICE $BTS_TYPE $BTS_BAUD $BTS_ADDRESS"
-    #/* < DTS2012061902005 sihongfang 20120619 begin */
     #echo 1 > $BLUETOOTH_CLOCK_PATH 
-    #/* DTS2012061902005 sihongfang 20120619 end > */
   ;;
   *) failed "Bluetooth QSoC firmware download failed" $exit_code_hci_qcomm_init;;
 esac
 
-# /* DTS2010101901100 xuhui 20101021 end > */
 # init does SIGTERM on ctl.stop for service
 trap "kill_hciattach" TERM INT
 
@@ -117,5 +113,3 @@ case $TRANSPORT in
 esac
 
 exit 0
-# /* DTS2011012004291 xuhui 20110120 end >*/
-

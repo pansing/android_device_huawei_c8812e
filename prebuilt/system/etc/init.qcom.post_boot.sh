@@ -155,7 +155,6 @@ case "$target" in
         echo 25000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
         ;;
 esac
-# /* DTS2012021302632 lixiangyu 00111074 20120213 end > */
 
 case "$target" in
     "qsd8250_surf" | "qsd8250_ffa" | "qsd8650a_st1x")
@@ -199,7 +198,6 @@ case "$target" in
 esac
 
 # Enable Power modes and set the CPU Freq Sampling rates
-# /* < DTS2012021302632 lixiangyu 00111074 20120213 begin */
 case "$target" in
      "msm7627a")
 	echo 1 > /sys/module/pm2/modes/cpu0/standalone_power_collapse/idle_enabled
@@ -213,4 +211,3 @@ case "$target" in
 	echo 30000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
     ;;
 esac
-# /* DTS2012021302632 lixiangyu 00111074 20120213 end > */

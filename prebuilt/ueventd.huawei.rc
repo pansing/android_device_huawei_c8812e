@@ -78,6 +78,7 @@
 /dev/i2c-1                0664   root       system
 /dev/i2c-2                0664   root       system
 /dev/i2c-4                0664   root       system
+/dev/i2c-5                0664   media       media
 /dev/msm_pcm_out*         0660   system     audio
 /dev/msm_pcm_in*          0660   system     audio
 /dev/msm_mvs              0660   system     audio
@@ -91,9 +92,9 @@
 /dev/msm_audio_ctl        0660   system     audio
 /dev/htc-acoustic         0660   system     audio
 /dev/vdec                 0660   system     audio
-/dev/tzcom                0660   system     audio
-/dev/qseecom              0660   system     audio
-/dev/qce                  0660   system     audio
+/dev/tzcom                0660   system     drmrpc
+/dev/qseecom              0660   system     drmrpc
+/dev/qce                  0660   system     drmrpc
 /dev/q6venc               0660   system     audio
 /dev/snd/dsp              0660   system     audio
 /dev/snd/dsp1             0660   system     audio
@@ -188,7 +189,6 @@
 /dev/msm_amrnb_in         0640  system       audio
 /sys/devices/virtual/usb_composite/*   enable      0664  root   system
 /sys/devices/virtual/smdpkt/smdcntl*       open_timeout   0664 radio radio
-/dev/block/mmcblk0p5      0660  root       system
 /dev/block/mmcblk0p7      0660  system       system
 /dev/hw_extern_sdcard     0444  sdcard_rw    sdcard_rw
 /dev/hw_extern_sdcardMounted 0644	sdcard_rw   sdcard_rw
@@ -200,3 +200,6 @@
 
 # DVB devices
 /dev/dvb/adapter0/demux*  0444   media       media
+/dev/dvb/adapter0/dvr*    0664   media       media
+/dev/dvb/adapter0/video*  0664   media       media
+/sys/devices/platform/mtk6252    usb_sel   0664   root   system
