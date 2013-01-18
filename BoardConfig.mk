@@ -128,7 +128,7 @@ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 
 # Recovery
-TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/c8812e/recovery_kernel
+#TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/c8812e/recovery_kernel
 BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/c8812e/recovery/graphics_cn.c
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/huawei/c8812e/recovery/recovery-keys.c
 TARGET_RECOVERY_INITRC := device/huawei/c8812e/recovery/etc/init.rc
