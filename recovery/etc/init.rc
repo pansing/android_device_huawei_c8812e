@@ -1,71 +1,73 @@
-##########################################
-#History:
-#when       whom            what, where, why
-#--------   ----            ---------------------------------------------------
-#2010-12-08 sebastian404    inital build
-#2011-03-31 sebastian404    fix usbconfig for 2.6.32 kernel
-#2011-05-28 sebastian404    increated ramdisk for kernel replacment stuffs
-#2011-08-09 sebastian404    since everyone lubs it so, added in ueventd
-#2012-04-14 sebastian404    initial build for U8815 / Huawei Ascend G300
-##########################################
-
 on early-init
     start ueventd
 
 on init
-    # setup enviroment
     export PATH /sbin
-    export LD_LIBRARY_PATH .:/sbin
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
 
-    # setup recovery filesystems
-    mkdir /sdcard 0771 system system
-    mkdir /sd-ext 0771 system system
-    mkdir /system 0771 system system
-    mkdir /data 0771 system system
-    mkdir /cust 0771 system system
-    mkdir /datadata 0771 system system
-    mkdir /cache 0770 system cache
-    mkdir /etc 0770 root root
-    mkdir /tmp 01777 root root
-    
-    # wait for cache to be mounted
-    wait /dev/block/mmcblk0p6
+    symlink /system/etc /etc
+
+    mkdir /boot
+    mkdir /cust
+    mkdir /recovery
+    mkdir /sdcard
+    mkdir /internal_sd
+    mkdir /external_sd
+    mkdir /sd-ext
+    mkdir /datadata
+    mkdir /emmc
+    mkdir /system
+    mkdir /data
+    mkdir /cache
+    mount /tmp /tmp tmpfs
+
+    chown root shell /tmp
+    chmod 0775 /tmp
+
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 12d1
+    write /sys/class/android_usb/android0/idProduct 1038
+    write /sys/class/android_usb/android0/f_mass_storage/nluns 2
+    write /sys/class/android_usb/android0/f_mass_storage/cdrom_index none
+    write /sys/class/android_usb/android0/functions mass_storage,adb
 
 on boot
+
     ifup lo
     hostname localhost
     domainname localdomain
+
     class_start default
-
-    # set cpu scaling_governor to ondemand
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
-
-    # mount inital filesystems
-    mount tmpfs tmpfs /tmp
-    wait /dev/block/mmcblk1p1
-    mount vfat /dev/block/mmcblk1p1 /sdcard rw
-
-    # turn up backlight & keypad
-    write /sys/class/leds/lcd-backlight/brightness 255
-    write /sys/class/leds/button-backlight/brightness 255
 
 service ueventd /sbin/ueventd
     critical
 
-service rmt_storage /sbin/rmt_storage_recovery
-    user root
-
 service recovery /sbin/recovery
-    oneshot
+
+service rmt_storage /sbin/rmt_storage
 
 service adbd /sbin/adbd recovery
     disabled
 
-on property:persist.service.adb.enable=1
-    start adbd
+service rmt_oeminfo /sbin/rmt_oeminfo
+    class main
+    user root
+    oneshot
 
-on property:persist.service.adb.enable=0
-    stop adbd
+on property:ro.boot.emmc=true
+    start rmt_oeminfo
+    start rmt_storage
+
+# Always start adbd on userdebug and eng builds
+on property:ro.debuggable=1
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop service.adb.root 1
+
+# Restart adbd so it can run as root
+on property:service.adb.root=1
+    write /sys/class/android_usb/android0/enable 0
+    restart adbd
+    write /sys/class/android_usb/android0/enable 1

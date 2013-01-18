@@ -18,33 +18,29 @@ PRODUCT_PACKAGES += \
     
 # Graphics 
 PRODUCT_PACKAGES += \
-    gralloc.msm7627a \
-    copybit.msm7627a \
-    lights.msm7627a \
-    hwcomposer.msm7627a \
+    gralloc.msm7x27a \
+    copybit.msm7x27a \
+	lights.msm7x27a \
+    hwcomposer.msm7x27a \
     libtilerenderer \
     liboverlay \
     libgenlock \
     libmemalloc \
-    libI420colorconvert \
-    libhwcexternal \
-    libhwcservice \
-    libqdutils \
-    mm-vdec-omx-test \
-    mm-video-driver-test \
-    mm-venc-omx-test720p \
-    mm-video-encdrv-test
+	libI420colorconvert \
+	libhwcexternal \
+	libhwcservice \
+	libqdutils
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.msm7627a \
-    audio_policy.msm7627a \
+    audio.primary.msm7x27a \
+	audio_policy.msm7x27a \
     audio.a2dp.default \
     libaudioutils
 
 # Other
 PRODUCT_PACKAGES += \
     dexpreopt \
-    gps.msm7627a \
+    gps.msm7x27a \
     libloc_api-rpc \
     Camera
 
@@ -68,40 +64,23 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
-    frameworks/native/data/etc/android.hardware.faketouch.multitouch.distinct.xml:system/etc/permissions/android.hardware.faketouch.multitouch.distinct.xml \
-    frameworks/native/data/etc/android.hardware.faketouch.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.faketouch.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.hardware.faketouch.xml:system/etc/permissions/android.hardware.faketouch.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.xml:system/etc/permissions/android.hardware.touchscreen.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
-
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+    
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/init.huawei.rc:root/init.huawei.rc \
     device/huawei/c8812e/prebuilt/ueventd.huawei.rc:root/ueventd.huawei.rc \
     device/huawei/c8812e/prebuilt/init.qcom.sh:root/init.qcom.sh \
     device/huawei/c8812e/prebuilt/init.huawei.usb.rc:root/init.huawei.usb.rc \
-    device/huawei/c8812e/prebuilt/init.msm7627a.rc:root/init.msm7627a.rc \
-    device/huawei/c8812e/prebuilt/charger:root/charger
+    device/huawei/c8812e/prebuilt/init.msm7627a.rc:root/init.msm7627a.rc
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/wifi/ath6k/athtcmd_ram.bin \
