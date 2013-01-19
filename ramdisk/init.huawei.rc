@@ -1,17 +1,17 @@
 import init.huawei.usb.rc
 
 on init
-	mkdir /cust
-	mkdir /mnt 0755 system sdcard_r
-	mkdir /mnt/sdcard 0000 system system
-	mkdir /mnt/emmc 0000 system system
-	mkdir /persist 0771 system system
-	
-	export EXTERNAL_STORAGE /mnt/sdcard
-	export INTERNAL_STORAGE /mnt/emmc
-	
-	symlink /mnt/sdcard /sdcard
-	
+    mkdir /cust
+    mkdir /storage 0775 system sdcard_r
+    mkdir /storage/sdcard0 0000 system system
+    mkdir /storage/sdcard1 0000 system system
+    mkdir /internal_sd 0000 system system
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export INTERNAL_STORAGE /storage/sdcard1
+
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard1 /emmc
+    symlink /storage/sdcard1 /internal_sd
 	# can start monitoring.
     mkdir /dev/bus 0755 root root
     mkdir /dev/bus/usb 0755 root root
@@ -157,7 +157,7 @@ on emmc-fs
     write /sys/module/block2mtd/parameters/block2mtd /dev/block/mmcblk0p14
     
     wait /dev/block/mmcblk0p19
-    mount vfat /dev/block/mmcblk0p19 /mnt/emmc uid=1000,gid=1015,umask=0002,utf8
+    mount vfat /dev/block/mmcblk0p19 /storage/sdcard1 uid=1000,gid=1015,umask=0002,utf8
     mount ext4 /dev/block/mmcblk0p16 /cust ro
 
 on post-fs

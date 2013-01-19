@@ -76,11 +76,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
     
 PRODUCT_COPY_FILES += \
-    device/huawei/c8812e/prebuilt/init.huawei.rc:root/init.huawei.rc \
-    device/huawei/c8812e/prebuilt/ueventd.huawei.rc:root/ueventd.huawei.rc \
-    device/huawei/c8812e/prebuilt/init.qcom.sh:root/init.qcom.sh \
-    device/huawei/c8812e/prebuilt/init.huawei.usb.rc:root/init.huawei.usb.rc \
-    device/huawei/c8812e/prebuilt/init.msm7627a.rc:root/init.msm7627a.rc
+    device/huawei/c8812e/ramdisk/init.huawei.rc:root/init.huawei.rc \
+    device/huawei/c8812e/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc \
+    device/huawei/c8812e/ramdisk/init.qcom.sh:root/init.qcom.sh \
+    device/huawei/c8812e/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc \
+    device/huawei/c8812e/ramdisk/init.msm7627a.rc:root/init.msm7627a.rc
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/wifi/ath6k/athtcmd_ram.bin \
@@ -93,12 +93,12 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/wifi/ath6k/utf.bin:system/wifi/ath6k/utf.bin \
     device/huawei/c8812e/prebuilt/system/lib/modules/pppoe_dzc.ko:system/lib/modules/pppoe_dzc.ko \
     device/huawei/c8812e/prebuilt/system/lib/modules/pppoe.ko:system/lib/modules/pppoe.ko \
-    device/huawei/c8812e/prebuilt/system/wifi/ar6000.ko:system/wifi/ar6000.ko \
-    device/huawei/c8812e/prebuilt/system/lib/modules/cfg80211.ko:system/lib/modules/cfg80211.ko
+    device/huawei/c8812e/prebuilt/system/lib/modules/cfg80211.ko:system/lib/modules/cfg80211.ko \
+    device/huawei/c8812e/prebuilt/system/lib/modules/ar6000.ko:system/lib/modules/ar6000.ko
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/huawei/c8812e/audio_policy.conf:system/etc/audio_policy.conf
+    device/huawei/c8812e/prebuilt/system/etc/audio_policy.conf:system/etc/audio_policy.conf
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
@@ -113,8 +113,8 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
     device/huawei/c8812e/prebuilt/system/etc/vold.fstab:system/etc/vold.fstab \
-    device/huawei/c8812e/mediaprofiles/media_profiles.xml:system/etc/media_profiles.xml \
-    device/huawei/c8812e/media_codecs.xml:system/etc/media_codecs.xml \
+    device/huawei/c8812e/prebuilt/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
+    device/huawei/c8812e/prebuilt/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.rendering.sh:system/etc/init.qcom.rendering.sh \
     device/huawei/c8812e/prebuilt/system/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt

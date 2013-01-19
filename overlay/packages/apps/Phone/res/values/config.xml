@@ -14,22 +14,23 @@
      limitations under the License.
 -->
 
-<!-- Saga-specific phone app resources. -->
+<!-- Phone app resources that may need to be customized
+     for different hardware or product builds. -->
 <resources>
-
-    <!-- Determine whether calls to mute the microphone in PhoneUtils
-                           are routed through the android.media.AudioManager class (true) or through
-         the com.android.internal.telephony.Phone interface (false). -->
-    <bool name="send_mic_mute_to_AudioManager">true</bool>
-
-    <!-- Enable the onscreen "Dial" button in the emergency dialer. -->
-    <bool name="config_show_onscreen_dial_button">true</bool>
-    
-        <!-- Flag indicating whether the Phone app should ignore
+    <!-- Flag indicating whether the Phone app should ignore
          EVENT_SIM_NETWORK_LOCKED events from the Sim.  If true, this will
          prevent the IccNetworkDepersonalizationPanel from being shown,
          and effectively disable the "Sim network lock" feature. -->
-    
     <bool name="ignore_sim_network_locked_events">true</bool>
 
+    <!-- Determine whether calls to mute the microphone in PhoneUtils
+         are routed through the android.media.AudioManager class (true) or through
+         the com.android.internal.telephony.Phone interface (false). -->
+    <bool name="send_mic_mute_to_AudioManager">true</bool>
+
+    <!-- Determines if device implements a noise suppression device for in call audio-->
+    <bool name="has_in_call_noise_suppression">true</bool>
+
+    <!-- Audio parameter for setting noise suppression-->
+    <string name="in_call_noise_suppression_audioparameter">noise_suppression=on=off</string>
 </resources>
