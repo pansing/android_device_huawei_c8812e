@@ -8,6 +8,7 @@ on init
 	mkdir /persist 0771 system system
 	
 	export EXTERNAL_STORAGE /mnt/sdcard
+	export INTERNAL_STORAGE /mnt/emmc
 	
 	symlink /mnt/sdcard /sdcard
 	
