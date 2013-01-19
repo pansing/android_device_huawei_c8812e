@@ -41,8 +41,8 @@ wifi.supplicant_scan_interval=15
 persist.sys.usb.config=mass_storage,adb
 
 # Mount the internal SD card, too
-ro.additionalmounts=/mnt/emmc
-ro.vold.switchablepair=/mnt/sdcard,/mnt/emmc
+ro.additionalmounts=/storage/sdcard1
+ro.vold.switchablepair=/storage/sdcard1,/storage/sdcard0
 ro.emmc.sdcard.partition=19
 
 persist.sys.use_dithering=2
@@ -116,7 +116,7 @@ ro.fm.mulinst.recording.support=false
 ro.config.keypasstouser=true
 #System property for msm 
 #
-# z00173487 20120626 for G330 4.0 WVGA lcd
+#G330 4.0 WVGA lcd
 debug.composition.8x25.type=mdp
 ro.hw_plat=8x25
 

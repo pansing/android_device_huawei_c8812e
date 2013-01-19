@@ -20,20 +20,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gralloc.msm7x27a \
     copybit.msm7x27a \
-	lights.msm7x27a \
+    lights.msm7x27a \
     hwcomposer.msm7x27a \
     libtilerenderer \
     liboverlay \
     libgenlock \
     libmemalloc \
-	libI420colorconvert \
-	libhwcexternal \
-	libhwcservice \
-	libqdutils
+    libI420colorconvert \
+    libhwcexternal \
+    libhwcservice \
+    libqdutils
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.msm7x27a \
-	audio_policy.msm7x27a \
+    audio_policy.msm7x27a \
     audio.a2dp.default \
     libaudioutils
 
