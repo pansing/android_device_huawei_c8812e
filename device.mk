@@ -18,10 +18,10 @@ PRODUCT_PACKAGES += \
     
 # Graphics 
 PRODUCT_PACKAGES += \
-    gralloc.msm7x27a \
-    copybit.msm7x27a \
-    lights.msm7x27a \
-    hwcomposer.msm7x27a \
+    gralloc.msm7627a \
+    copybit.msm7627a \
+    lights.msm7627a \
+    hwcomposer.msm7627a \
     libtilerenderer \
     liboverlay \
     libgenlock \
@@ -32,15 +32,15 @@ PRODUCT_PACKAGES += \
     libqdutils
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.msm7x27a \
-    audio_policy.msm7x27a \
+    audio.primary.msm7627a \
+    audio_policy.msm7627a \
     audio.a2dp.default \
     libaudioutils
 
 # Other
 PRODUCT_PACKAGES += \
     dexpreopt \
-    gps.msm7x27a \
+    gps.msm7627a \
     libloc_api-rpc \
     Camera
 
