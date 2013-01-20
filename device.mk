@@ -134,29 +134,19 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/usr/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
     device/huawei/c8812e/prebuilt/system/usr/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl
 
-# if we use .34 kernel change 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so \
+    device/huawei/c8812e/prebuilt/system/lib/egl/libGLESv2S3D_adreno200.so:system/lib/egl/libGLESv2S3D_adreno200.so \
     device/huawei/c8812e/prebuilt/system/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
     device/huawei/c8812e/prebuilt/system/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     device/huawei/c8812e/prebuilt/system/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
     device/huawei/c8812e/prebuilt/system/lib/egl/eglsubAndroid.so:system/lib/egl/eglsubAndroid.so \
+    device/huawei/c8812e/prebuilt/system/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so \
     device/huawei/c8812e/prebuilt/system/lib/libOpenVG.so:system/lib/libOpenVG.so \
     device/huawei/c8812e/prebuilt/system/lib/libgsl.so:system/lib/libgsl.so \
-    device/huawei/c8812e/prebuilt/system/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so
+    device/huawei/c8812e/prebuilt/system/lib/libc2d2_z180.so:system/lib/libc2d2_z180.so \
+    device/huawei/c8812e/prebuilt/system/lib/libC2D2.so:system/lib/libC2D2.so
 
-PRODUCT_COPY_FILES += \
-    device/huawei/c8812e/prebuilt/system/lib/hw/copybit.msm7627a.so:system/lib/hw/copybit.msm7627a.so \
-    device/huawei/c8812e/prebuilt/system/lib/hw/gralloc.msm7627a.so:system/lib/hw/gralloc.msm7627a.so \
-    device/huawei/c8812e/prebuilt/system/lib/hw/hwcomposer.msm7627a.so:system/lib/hw/hwcomposer.msm7627a.so \
-    device/huawei/c8812e/prebuilt/system/lib/libgenlock.so:system/lib/libgenlock.so \
-    device/huawei/c8812e/prebuilt/system/lib/libhwcexternal.so:system/lib/libhwcexternal.so \
-    device/huawei/c8812e/prebuilt/system/lib/libhwcservice.so:system/lib/libhwcservice.so \
-    device/huawei/c8812e/prebuilt/system/lib/libmemalloc.so:system/lib/libmemalloc.so \
-    device/huawei/c8812e/prebuilt/system/lib/liboverlay.so:system/lib/liboverlay.so \
-    device/huawei/c8812e/prebuilt/system/lib/libqdMetaData.so:system/lib/libqdMetaData.so \
-    device/huawei/c8812e/prebuilt/system/lib/libqdutils.so:system/lib/libqdutils.so \
-    device/huawei/c8812e/prebuilt/system/lib/libtilerenderer.so:system/lib/libtilerenderer.so
 
 $(call inherit-product, build/target/product/full.mk)
 
