@@ -1,5 +1,9 @@
 import init.huawei.usb.rc
 
+on early-boot
+    start comp-set
+    start rendering-set
+
 on init
     mkdir /cust
     mkdir /storage 0775 system sdcard_r
