@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2011, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -30,30 +30,63 @@ soc_id=`cat /sys/devices/system/soc/soc0/id`
 
 # set default composition for MSM7627A
 case $soc_id in
-     90 | 91 | 92 | 97 | 101 | 102 | 103)
+     90 | 91 | 92 | 97 | 101 | 102 | 103 | 136)
         comp_7x27A=`getprop debug.composition.7x27A.type`
         setprop debug.composition.type $comp_7x27A
         setprop ro.hw_plat 7x27A
+        buildid=`cat /sys/devices/system/soc/soc0/build_id`
+        offset_1=0
+        offset_2=6
+        length=1
+        is_unicorn=7
+        dsp_lpa_enabled=2
+        modemid_1=${buildid:$offset_1:$length}
+        modemid_2=${buildid:$offset_2:$length}
+        if [ "$modemid_1" = "$is_unicorn" ] && [ "$modemid_2" -gt "$dsp_lpa_enabled" ]; then
+           setprop lpa.decode true
+           setprop audio.decoder_override_check true
+           setprop use.non-omx.mp3.decoder true
+        else
+           setprop lpa.decode false
+        fi
     ;;
 esac
 
 # set default composition for MSM7625A
 case $soc_id in
-     88 | 89 | 96 | 98 | 99 | 100 | 131 | 132 | 133)
+     88 | 89 | 96 | 98 | 99 | 100 | 131 | 132 | 133 | 135)
         comp_7x25A=`getprop debug.composition.7x25A.type`
         setprop debug.composition.type $comp_7x25A
         setprop ro.hw_plat 7x25A
+        buildid=`cat /sys/devices/system/soc/soc0/build_id`
+        offset_1=0
+        offset_2=6
+        length=1
+        is_unicorn=7
+        dsp_lpa_enabled=2
+        modemid_1=${buildid:$offset_1:$length}
+        modemid_2=${buildid:$offset_2:$length}
+        if [ "$modemid_1" = "$is_unicorn" ] && [ "$modemid_2" -gt "$dsp_lpa_enabled" ]; then
+           setprop lpa.decode true
+           setprop audio.decoder_override_check true
+           setprop use.non-omx.mp3.decoder true
+        else
+           setprop lpa.decode false
+        fi
     ;;
 esac
 
 # set default composition for MSM8625
 #/* < DTS2012061404542 sujunfeng 20120614 begin */
 case $soc_id in
-     127 | 128 | 129)
+     127 | 128 | 129 | 137)
         comp_8x25=`getprop debug.composition.8x25.type`
         setprop debug.composition.type $comp_8x25
         setprop ro.hw_plat 8x25
         setprop lpa.decode false
+        setprop audio.decoder_override_check true
+        setprop use.non-omx.mp3.decoder true
+        setprop ro.qc.sdk.audio.fluencetype fluence
     ;;
 esac
 #/* DTS2012061404542 sujunfeng 20120614 end > */
