@@ -120,6 +120,52 @@ ro.config.keypasstouser=true
 debug.composition.8x25.type=mdp
 ro.hw_plat=8x25
 
+# libandroid_runtime
+ro.config.hw_pic_limit_size=50
+
+# libwebcore
+ro.config.usesEncodingDetector =1
+net.webkit.setpri = 1
+net.webkit.cache.mindeadsize = 4194304
+net.webkit.cache.maxdeadsize = 4194304
+
+# netmgrd
+persist.data_netmgrd_mtu=1460
+
+# modempre
+ro.config.sel_df_c_before_tp=true
+ro.config.notRefreshInPBM=true
+
+debug.composition.type=dyn
+
+# mm-pp-daemon
+hw.cabl.level=2
+hw.cabl.version=1.0.20120512
+ro.qualcomm.cabl=1
+
+# init.qcom.composition_type.sh
+lpa.decode=true
+
+# libc
+net.dns.cache_size=512
+
+# libgetzip
+net.http.getzip=1
+
+# libtcpfinaggr
+net.tcp.fin.aggregation = 1
+
+# gps_check
+ro.config.is_agps_disable=0
+
+# libril-qc-1.so
+ro.config.hw_cdma_cdg=false
+
+# modempre
+ro.config.is_cdma_phone=true
+
+
+
 ro.confg.hw_appsbootversion=C8812EVSHENDUOS_APPSBOOT
 ro.confg.hw_appversion=C8812EVSHENDUOS_KERNEL
 ro.confg.hw_appfsversion=C8812EVSHENDUOS_SYSIMG

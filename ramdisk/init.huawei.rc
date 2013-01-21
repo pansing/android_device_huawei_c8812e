@@ -3,7 +3,8 @@ import init.huawei.usb.rc
 on early-boot
     start comp-set
     start rendering-set
-
+    start qcamerasvr
+    start gpu_dcvsd
 on init
     mkdir /cust
     mkdir /storage 0775 system sdcard_r
@@ -145,6 +146,34 @@ on boot
     # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  3461120
     write /proc/sys/net/core/wmem_max  3461120
+
+# Allow writing to the kernel trace log.
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+
+# Allow the shell group to enable (some) kernel tracing.
+    chown root shell /sys/kernel/debug/tracing/trace_clock
+    chown root shell /sys/kernel/debug/tracing/buffer_size_kb
+    chown root shell /sys/kernel/debug/tracing/options/overwrite
+    chown root shell /sys/kernel/debug/tracing/events/sched/sched_switch/enable
+    chown root shell /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/cpu_idle/enable
+    chown root shell /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chown root shell /sys/kernel/debug/tracing/tracing_on
+
+    chmod 0664 /sys/kernel/debug/tracing/trace_clock
+    chmod 0664 /sys/kernel/debug/tracing/buffer_size_kb
+    chmod 0664 /sys/kernel/debug/tracing/options/overwrite
+    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_switch/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_idle/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chmod 0664 /sys/kernel/debug/tracing/tracing_on
+
+# Allow only the shell group to read and truncate the kernel trace.
+    chown root shell /sys/kernel/debug/tracing/trace
+    chmod 0660 /sys/kernel/debug/tracing/trace
 
 on emmc-fs
     wait /dev/block/mmcblk0p17
@@ -600,8 +629,8 @@ service rendering-set /system/bin/sh /system/etc/init.qcom.rendering.sh
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
         class late_start
-        user system
-        group system camera inet
+        user camera
+        group camera system inet audio
 
 service thermald /system/bin/thermald
    class late_start
@@ -610,14 +639,12 @@ service thermald /system/bin/thermald
    disabled
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
-        class late_start
+    class late_start
 	user root
 	disabled
 
 on property:sys.radio.shutdown=true
    exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
-   user root
-   group root
 
 service gpu_dcvsd /system/bin/gpu_dcvsd
     class late_start
