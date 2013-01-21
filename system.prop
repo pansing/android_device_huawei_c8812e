@@ -1,6 +1,7 @@
 #
 # system.prop for c8812e
 #
+ro.vendor.extension_library=/system/lib/libqc-opt.so
 rild.libpath=/system/lib/libril-qc-1.so
 rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
