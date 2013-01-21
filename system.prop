@@ -165,6 +165,12 @@ ro.config.hw_cdma_cdg=false
 # modempre
 ro.config.is_cdma_phone=true
 
+# VM
+dalvik.vm.dexopt-data-only=1
+dalvik.vm.execution-mode=int:jit
+dalvik.vm.heapgrowthlimit=36m
+dalvik.vm.heapsize=128m
+dalvik.vm.heapstartsize=5m
 
 
 ro.confg.hw_appsbootversion=C8812EVSHENDUOS_APPSBOOT
