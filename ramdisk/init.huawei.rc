@@ -644,7 +644,3 @@ on property:sys.radio.shutdown=true
    user root
    group root
 
-service gpu_dcvsd /system/bin/gpu_dcvsd
-    class late_start
-    user root
-    oneshot

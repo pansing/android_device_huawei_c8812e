@@ -58,7 +58,6 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/huawei/c8812e/prebuilt/system/lib/egl/egl.cfg
-BOARD_USES_QCOM_HARDWARE := true
 COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 BOARD_USES_QCOM_LIBRPC := true
