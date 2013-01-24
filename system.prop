@@ -119,7 +119,10 @@ ro.config.keypasstouser=true
 #G330 4.0 WVGA lcd
 debug.composition.8x25.type=mdp
 ro.hw_plat=8x25
+lpa.decode=false
 
 ro.confg.hw_appsbootversion=C8812EVSHENDUOS_APPSBOOT
 ro.confg.hw_appversion=C8812EVSHENDUOS_KERNEL
 ro.confg.hw_appfsversion=C8812EVSHENDUOS_SYSIMG
+#hwui.render_dirty_regions=?
+#debug.enabletr=?

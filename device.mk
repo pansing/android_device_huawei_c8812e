@@ -30,6 +30,7 @@ PRODUCT_PACKAGES += \
     libhwcexternal \
     libhwcservice \
     libqdutils
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.msm7627a \
@@ -79,8 +80,7 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/ramdisk/init.huawei.rc:root/init.huawei.rc \
     device/huawei/c8812e/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc \
     device/huawei/c8812e/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    device/huawei/c8812e/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc \
-    device/huawei/c8812e/ramdisk/init.msm7627a.rc:root/init.msm7627a.rc
+    device/huawei/c8812e/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/wifi/ath6k/athtcmd_ram.bin \
@@ -103,8 +103,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/huawei/c8812e/prebuilt/system/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/huawei/c8812e/prebuilt/system/etc/AudioFilter_MSM8X25_C8812E.csv:system/etc/AudioFilter_MSM8X25_C8812E.csv \
-    device/huawei/c8812e/prebuilt/system/etc/init.qcom.composition_type.sh:system/etc/init.qcom.composition_type.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.goldfish.sh:system/etc/init.goldfish.sh \
@@ -116,7 +114,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/huawei/c8812e/prebuilt/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
-    device/huawei/c8812e/prebuilt/system/etc/init.qcom.rendering.sh:system/etc/init.qcom.rendering.sh \
     device/huawei/c8812e/prebuilt/system/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
 
 PRODUCT_COPY_FILES += \
