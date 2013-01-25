@@ -202,8 +202,6 @@ on post-fs-data
     mkdir /data/misc/wifi/bin 0775 system system
 
 	symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
-	symlink /system/wifi/ath6k /ath6k
-	symlink /system/wifi/ath6k /load
 	
     chmod 0660 /dev/assd
     chown smartcard smartcard /dev/assd
