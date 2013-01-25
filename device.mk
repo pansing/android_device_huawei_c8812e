@@ -80,7 +80,9 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/ramdisk/init.huawei.rc:root/init.huawei.rc \
     device/huawei/c8812e/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc \
     device/huawei/c8812e/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    device/huawei/c8812e/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc
+    device/huawei/c8812e/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc \
+	device/huawei/c8812e/ramdisk/wifi/cfg80211.ko:root/wifi/cfg80211.ko \
+	device/huawei/c8812e/ramdisk/wifi/ar6000.ko:root/wifi/ar6000.ko
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/wifi/ath6k/athtcmd_ram.bin \
@@ -92,9 +94,7 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/wifi/ath6k/softmac:system/wifi/ath6k/softmac \
     device/huawei/c8812e/prebuilt/system/wifi/ath6k/utf.bin:system/wifi/ath6k/utf.bin \
     device/huawei/c8812e/prebuilt/system/lib/modules/pppoe_dzc.ko:system/lib/modules/pppoe_dzc.ko \
-    device/huawei/c8812e/prebuilt/system/lib/modules/pppoe.ko:system/lib/modules/pppoe.ko \
-    device/huawei/c8812e/prebuilt/system/lib/modules/cfg80211.ko:system/lib/modules/cfg80211.ko \
-    device/huawei/c8812e/prebuilt/system/lib/modules/ar6000.ko:system/lib/modules/ar6000.ko
+    device/huawei/c8812e/prebuilt/system/lib/modules/pppoe.ko:system/lib/modules/pppoe.ko
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
