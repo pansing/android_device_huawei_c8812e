@@ -109,7 +109,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    device/huawei/c8812e/prebuilt/system/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
     device/huawei/c8812e/prebuilt/system/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/c8812e/prebuilt/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/huawei/c8812e/prebuilt/system/etc/media_codecs.xml:system/etc/media_codecs.xml \

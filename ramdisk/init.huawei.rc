@@ -423,6 +423,12 @@ service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
+service wiperiface /system/bin/wiperiface
+    class late_start
+    user gps
+    group gps qcom_oncrpc net_raw
+    oneshot
+
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class main
     user root
@@ -467,10 +473,6 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     user root
     disabled
     oneshot
-
-service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
-    class late_start
-    oneshot
     
 service akm8975 /system/bin/akmd8975
     class main
@@ -495,12 +497,6 @@ service qcom-sh /system/bin/sh /init.qcom.sh
     class main
     user root
     oneshot
-
-#start camera server as daemon
-#service qcamera-daemon /system/bin/mm-qcamera-daemon
-#    class main
-#	user system
-#	group system camera inet
 
 service thermald /system/bin/thermald
     class main
@@ -575,7 +571,7 @@ service gps_check /system/bin/gps_check
     group root
     oneshot
     
-service pppd-gprs /system/bin/pppd call gprs 
+service pppd-gprs /system/bin/pppd call gprs
     class main
     user root
     group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
@@ -594,4 +590,10 @@ service gpu_dcvsd /system/bin/gpu_dcvsd
     class late_start
     user root
     oneshot
+
+#start camera server as daemon
+service qcamera-daemon /system/bin/mm-qcamera-daemon
+    class late_start
+	user system
+	group system camera inet
 

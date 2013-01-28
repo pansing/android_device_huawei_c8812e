@@ -44,6 +44,7 @@ persist.sys.usb.config=mass_storage,adb
 ro.additionalmounts=/storage/sdcard1
 ro.vold.switchablepair=/storage/sdcard1,/storage/sdcard0
 ro.emmc.sdcard.partition=19
+ro.vold.umsdirtyratio=20
 
 persist.sys.use_dithering=2
 com.qc.hardware=true
@@ -124,5 +125,5 @@ lpa.decode=false
 ro.confg.hw_appsbootversion=C8812EVSHENDUOS_APPSBOOT
 ro.confg.hw_appversion=C8812EVSHENDUOS_KERNEL
 ro.confg.hw_appfsversion=C8812EVSHENDUOS_SYSIMG
-#hwui.render_dirty_regions=?
-#debug.enabletr=?
+hwui.render_dirty_regions=false
+debug.enabletr=false
