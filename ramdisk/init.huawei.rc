@@ -424,7 +424,7 @@ service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
     oneshot
 
 service wiperiface /system/bin/wiperiface
-    class late_start
+    class main
     user gps
     group gps qcom_oncrpc net_raw
     oneshot
@@ -579,7 +579,7 @@ service pppd-gprs /system/bin/pppd call gprs
     disabled
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
-	class late_start
+	class main
 	user root
 	disabled
 
@@ -587,13 +587,13 @@ on property:sys.radio.shutdown=true
     exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
 
 service gpu_dcvsd /system/bin/gpu_dcvsd
-    class late_start
+    class main
     user root
     oneshot
 
 #start camera server as daemon
 service qcamera-daemon /system/bin/mm-qcamera-daemon
-    class late_start
+    class main
 	user system
 	group system camera inet
 
