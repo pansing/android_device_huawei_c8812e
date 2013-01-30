@@ -85,14 +85,12 @@ PRODUCT_COPY_FILES += \
 	device/huawei/c8812e/ramdisk/wifi/ar6000.ko:root/wifi/ar6000.ko
 
 PRODUCT_COPY_FILES += \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/wifi/ath6k/athtcmd_ram.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/caldata.bin:system/wifi/ath6k/caldata.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/caldata_MSM8X25_C8812E.bin:system/wifi/ath6k/caldata_MSM8X25_C8812E.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/caldata_MSM8X25_C8812P.bin:system/wifi/ath6k/caldata_MSM8X25_C8812P.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/fw-3.bin:system/wifi/ath6k/fw-3.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/nullTestFlow.bin:system/wifi/ath6k/nullTestFlow.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/softmac:system/wifi/ath6k/softmac \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/utf.bin:system/wifi/ath6k/utf.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/etc/firmware/ath6k/athtcmd_ram.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/caldata_MSM8X25_C8812E.bin:system/etc/firmware/load/caldata.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/fw-3.bin:system/etc/firmware/ath6k/fw-3.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/nullTestFlow.bin:system/etc/firmware/ath6k/nullTestFlow.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/softmac:system/etc/firmware/ath6k/softmac \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/utf.bin:system/etc/firmware/ath6k/utf.bin \
     device/huawei/c8812e/prebuilt/system/lib/modules/pppoe_dzc.ko:system/lib/modules/pppoe_dzc.ko \
     device/huawei/c8812e/prebuilt/system/lib/modules/pppoe.ko:system/lib/modules/pppoe.ko
 
