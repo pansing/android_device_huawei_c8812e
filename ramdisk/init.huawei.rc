@@ -1,10 +1,5 @@
 import init.huawei.usb.rc
 
-on early-boot
-    start comp-set
-    start rendering-set
-    start qcamerasvr
-    start gpu_dcvsd
 on init
     mkdir /cust
     mkdir /storage 0775 system sdcard_r
@@ -16,7 +11,7 @@ on init
 
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard1 /emmc
-    symlink /storage/sdcard1 /internal_sd
+
 	# can start monitoring.
     mkdir /dev/bus 0755 root root
     mkdir /dev/bus/usb 0755 root root
@@ -147,34 +142,6 @@ on boot
     write /proc/sys/net/core/rmem_max  3461120
     write /proc/sys/net/core/wmem_max  3461120
 
-# Allow writing to the kernel trace log.
-    chmod 0222 /sys/kernel/debug/tracing/trace_marker
-
-# Allow the shell group to enable (some) kernel tracing.
-    chown root shell /sys/kernel/debug/tracing/trace_clock
-    chown root shell /sys/kernel/debug/tracing/buffer_size_kb
-    chown root shell /sys/kernel/debug/tracing/options/overwrite
-    chown root shell /sys/kernel/debug/tracing/events/sched/sched_switch/enable
-    chown root shell /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
-    chown root shell /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
-    chown root shell /sys/kernel/debug/tracing/events/power/cpu_idle/enable
-    chown root shell /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
-    chown root shell /sys/kernel/debug/tracing/tracing_on
-
-    chmod 0664 /sys/kernel/debug/tracing/trace_clock
-    chmod 0664 /sys/kernel/debug/tracing/buffer_size_kb
-    chmod 0664 /sys/kernel/debug/tracing/options/overwrite
-    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_switch/enable
-    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
-    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
-    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_idle/enable
-    chmod 0664 /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
-    chmod 0664 /sys/kernel/debug/tracing/tracing_on
-
-# Allow only the shell group to read and truncate the kernel trace.
-    chown root shell /sys/kernel/debug/tracing/trace
-    chmod 0660 /sys/kernel/debug/tracing/trace
-
 on emmc-fs
     wait /dev/block/mmcblk0p17
     mount ext4 /dev/block/mmcblk0p17 /system ro barrier=1,nodelalloc
@@ -190,7 +157,7 @@ on emmc-fs
     write /sys/module/block2mtd/parameters/block2mtd /dev/block/mmcblk0p14
     
     wait /dev/block/mmcblk0p19
-    mount vfat /dev/block/mmcblk0p19 /storage/sdcard1 uid=1000,gid=1015,umask=0002,utf8
+    mount vfat /dev/block/mmcblk0p19 /internal_sd uid=1000,gid=1015,umask=0002,utf8
     mount ext4 /dev/block/mmcblk0p16 /cust ro
 
 on post-fs
@@ -219,9 +186,11 @@ on post-fs-data
     mkdir /data/misc
     chmod 01771 /data/misc/
     chown system misc /data/misc/
+    
     mkdir /data/misc/wifi
     chmod 0770 /data/misc/wifi
     chown wifi wifi /data/misc/wifi/
+    chmod 0660 /data/misc/wifi/wpa_supplicant.conf
     mkdir /data/misc/wifi/sockets 0775 wifi wifi
     mkdir /data/misc/wpa_supplicant 0775 wifi wifi
     mkdir /data/misc/dhcp 0775 dhcp dhcp
@@ -229,21 +198,11 @@ on post-fs-data
     mkdir /data/misc/wifi/load
     chmod 0775 /data/misc/wifi/load
     chown system system /data/misc/wifi/load/
-    symlink /system/wifi/ath6k/caldata.bin /data/misc/wifi/load/caldata.bin
-    symlink /system/wifi/ath6k/athtcmd_ram.bin /data/misc/wifi/load/athtcmd_ram.bin
-    symlink /system/wifi/ath6k/nullTestFlow.bin /data/misc/wifi/load/nullTestFlow.bin
-    symlink /system/wifi/ath6k/utf.bin /data/misc/wifi/load/utf.bin
-    symlink /system/wifi/ath6k/fw-3.bin /data/misc/wifi/load/fw-3.bin
-    symlink /system/wifi/ath6k/softmac /data/misc/wifi/load/softmac
+
     mkdir /data/misc/wifi/bin 0775 system system
 
-    # Create the directories used by the Wireless subsystem
-    mkdir /data/misc/wifi 0770 wifi wifi
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
-    chown dhcp dhcp /data/misc/dhcp
-
+	symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
+	
     chmod 0660 /dev/assd
     chown smartcard smartcard /dev/assd
     
@@ -414,7 +373,13 @@ on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
     stop netmgrd
 
-service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -ieth0 -puse_p2p_group_interface=1 -W -c/data/misc/wifi/wpa_supplicant.conf
+service wlan_detect /system/bin/wlan_detect
+    class main
+    user root
+    group root
+    oneshot
+
+service wpa_supplicant /system/bin/ath_supplicant -Dnl80211 -ieth0  -c/data/misc/wifi/wpa_supplicant.conf
     class main
     group wifi inet
     socket wpa_eth0 dgram 660 wifi wifi
@@ -438,6 +403,7 @@ service amp_unload /system/bin/amploader -u
     user root
     disabled
     oneshot
+
 service dhcpcd_eth0 /system/bin/dhcpcd -BKLG
     class main
     disabled
@@ -457,11 +423,25 @@ service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
+service wiperiface /system/bin/wiperiface
+    class main
+    user gps
+    group gps qcom_oncrpc net_raw
+    oneshot
+
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class main
     user root
     group system qcom_oncrpc
     disabled
+    oneshot
+
+service atserver /system/bin/atserver
+    class core
+    oneshot
+
+service test_diag /system/bin/test_diag
+    class core
     oneshot
 
 service oem_rpc_svc /system/bin/oem_rpc_svc
@@ -488,39 +468,16 @@ on property:drmdiag.load=1
 on property:drmdiag.load=0
     stop drmdiag
 
-service qcom-sh /system/bin/sh /init.qcom.sh
-    class late_start
-    user root
-    oneshot
-service gps_nmea /system/bin/port-bridge /dev/nmea /dev/ttyGS1
-    disabled
-
-service compassd /system/bin/compassd
-    class main
-    disabled
-    oneshot
-
 service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class late_start
     user root
     disabled
-    oneshot
-
-service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
-    class late_start
     oneshot
     
 service akm8975 /system/bin/akmd8975
     class main
     disabled
     oneshot
-
-service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
-    class late_start
-    user root
-    group root
-    oneshot
-    disabled
     
 service akm8962 /system/bin/akmd8962
     class main
@@ -540,6 +497,12 @@ service qcom-sh /system/bin/sh /init.qcom.sh
     class main
     user root
     oneshot
+
+service thermald /system/bin/thermald
+    class main
+    user root
+    group root
+    disabled
 
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class main
@@ -569,8 +532,16 @@ service map1 /system/bin/sdptool add --channel=17 MAS1
     disabled
     oneshot
 
-service gps_nmea /system/bin/port-bridge /dev/nmea /dev/ttyGS1
+service ril-daemon1 /system/bin/rild -c 1
+    class main
+    socket rild1 stream 660 root radio
+    socket rild-debug1 stream 660 radio system
+    user root
     disabled
+    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
+
+on property:ro.multi.rild=true
+    start ril-daemon1
 
 service abtfilt /system/bin/abtfilt -a -d -z -n -q -v -s -w eth0
     class late_start
@@ -580,11 +551,6 @@ service abtfilt /system/bin/abtfilt -a -d -z -n -q -v -s -w eth0
     oneshot
     
 service akm8963 /system/bin/akmd8963
-    class main
-    disabled
-    oneshot
-    
-service akm8962 /system/bin/akmd8962
     class main
     disabled
     oneshot
@@ -605,48 +571,29 @@ service gps_check /system/bin/gps_check
     group root
     oneshot
     
-service pppd-gprs /system/bin/pppd call gprs 
+service pppd-gprs /system/bin/pppd call gprs
     class main
     user root
     group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
     oneshot
     disabled
-    
-service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
-    class late_start
-    user root
-    critical
-    disabled
-    oneshot
-
-service rendering-set /system/bin/sh /system/etc/init.qcom.rendering.sh
-    class late_start
-    user root
-    critical
-    disabled
-    oneshot
-
-#start camera server as daemon
-service qcamerasvr /system/bin/mm-qcamera-daemon
-        class late_start
-        user camera
-        group camera system inet audio
-
-service thermald /system/bin/thermald
-   class late_start
-   user root
-   group root
-   disabled
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
-    class late_start
+	class main
 	user root
 	disabled
 
 on property:sys.radio.shutdown=true
-   exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
+    exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
 
 service gpu_dcvsd /system/bin/gpu_dcvsd
-    class late_start
+    class main
     user root
     oneshot
+
+#start camera server as daemon
+service qcamera-daemon /system/bin/mm-qcamera-daemon
+    class main
+	user system
+	group system camera inet
+

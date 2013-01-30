@@ -30,6 +30,7 @@ PRODUCT_PACKAGES += \
     libhwcexternal \
     libhwcservice \
     libqdutils
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.msm7627a \
@@ -80,21 +81,18 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc \
     device/huawei/c8812e/ramdisk/init.qcom.sh:root/init.qcom.sh \
     device/huawei/c8812e/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc \
-    device/huawei/c8812e/ramdisk/init.msm7627a.rc:root/init.msm7627a.rc
+	device/huawei/c8812e/ramdisk/wifi/cfg80211.ko:root/wifi/cfg80211.ko \
+	device/huawei/c8812e/ramdisk/wifi/ar6000.ko:root/wifi/ar6000.ko
 
 PRODUCT_COPY_FILES += \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/wifi/ath6k/athtcmd_ram.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/caldata.bin:system/wifi/ath6k/caldata.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/caldata_MSM8X25_C8812E.bin:system/wifi/ath6k/caldata_MSM8X25_C8812E.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/caldata_MSM8X25_C8812P.bin:system/wifi/ath6k/caldata_MSM8X25_C8812P.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/fw-3.bin:system/wifi/ath6k/fw-3.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/nullTestFlow.bin:system/wifi/ath6k/nullTestFlow.bin \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/softmac:system/wifi/ath6k/softmac \
-    device/huawei/c8812e/prebuilt/system/wifi/ath6k/utf.bin:system/wifi/ath6k/utf.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/etc/firmware/ath6k/athtcmd_ram.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/caldata_MSM8X25_C8812E.bin:system/etc/firmware/load/caldata.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/fw-3.bin:system/etc/firmware/ath6k/fw-3.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/nullTestFlow.bin:system/etc/firmware/ath6k/nullTestFlow.bin \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/softmac:system/etc/firmware/ath6k/softmac \
+    device/huawei/c8812e/prebuilt/system/wifi/ath6k/utf.bin:system/etc/firmware/ath6k/utf.bin \
     device/huawei/c8812e/prebuilt/system/lib/modules/pppoe_dzc.ko:system/lib/modules/pppoe_dzc.ko \
-    device/huawei/c8812e/prebuilt/system/lib/modules/pppoe.ko:system/lib/modules/pppoe.ko \
-    device/huawei/c8812e/prebuilt/system/lib/modules/cfg80211.ko:system/lib/modules/cfg80211.ko \
-    device/huawei/c8812e/prebuilt/system/lib/modules/ar6000.ko:system/lib/modules/ar6000.ko
+    device/huawei/c8812e/prebuilt/system/lib/modules/pppoe.ko:system/lib/modules/pppoe.ko
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -103,20 +101,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/huawei/c8812e/prebuilt/system/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/huawei/c8812e/prebuilt/system/etc/AudioFilter_MSM8X25_C8812E.csv:system/etc/AudioFilter_MSM8X25_C8812E.csv \
-    device/huawei/c8812e/prebuilt/system/etc/init.qcom.composition_type.sh:system/etc/init.qcom.composition_type.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.goldfish.sh:system/etc/init.goldfish.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    device/huawei/c8812e/prebuilt/system/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
     device/huawei/c8812e/prebuilt/system/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/c8812e/prebuilt/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/huawei/c8812e/prebuilt/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
     device/huawei/c8812e/prebuilt/system/etc/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
-    device/huawei/c8812e/prebuilt/system/etc/init.qcom.rendering.sh:system/etc/init.qcom.rendering.sh \
     device/huawei/c8812e/prebuilt/system/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
 
 PRODUCT_COPY_FILES += \
@@ -133,20 +127,19 @@ PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/usr/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
     device/huawei/c8812e/prebuilt/system/usr/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
     device/huawei/c8812e/prebuilt/system/usr/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl
-
+    
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so \
-    device/huawei/c8812e/prebuilt/system/lib/egl/libGLESv2S3D_adreno200.so:system/lib/egl/libGLESv2S3D_adreno200.so \
     device/huawei/c8812e/prebuilt/system/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
     device/huawei/c8812e/prebuilt/system/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     device/huawei/c8812e/prebuilt/system/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
     device/huawei/c8812e/prebuilt/system/lib/egl/eglsubAndroid.so:system/lib/egl/eglsubAndroid.so \
-    device/huawei/c8812e/prebuilt/system/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so \
+    device/huawei/c8812e/prebuilt/system/lib/libC2D2.so:system/lib/libC2D2.so \
     device/huawei/c8812e/prebuilt/system/lib/libOpenVG.so:system/lib/libOpenVG.so \
+    device/huawei/c8812e/prebuilt/system/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so \
     device/huawei/c8812e/prebuilt/system/lib/libgsl.so:system/lib/libgsl.so \
-    device/huawei/c8812e/prebuilt/system/lib/libc2d2_z180.so:system/lib/libc2d2_z180.so \
-    device/huawei/c8812e/prebuilt/system/lib/libC2D2.so:system/lib/libC2D2.so
-
+    device/huawei/c8812e/prebuilt/system/lib/egl/libGLESv2S3D_adreno200.so:system/lib/egl/libGLESv2S3D_adreno200.so \
+    device/huawei/c8812e/prebuilt/system/lib/libc2d2_z180.so:system/lib/libc2d2_z180.so
 
 $(call inherit-product, build/target/product/full.mk)
 
