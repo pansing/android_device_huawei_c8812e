@@ -76,13 +76,17 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
     
+# init.rc
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/ramdisk/init.huawei.rc:root/init.huawei.rc \
     device/huawei/c8812e/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc \
     device/huawei/c8812e/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    device/huawei/c8812e/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc \
-	device/huawei/c8812e/ramdisk/wifi/cfg80211.ko:root/wifi/cfg80211.ko \
-	device/huawei/c8812e/ramdisk/wifi/ar6000.ko:root/wifi/ar6000.ko
+    device/huawei/c8812e/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc
+
+# WIFI
+PRODUCT_COPY_FILES += \
+	device/huawei/c8812e/ramdisk/wifi/cfg80211.ko:system/lib/modules/cfg80211.ko \
+	device/huawei/c8812e/ramdisk/wifi/ar6000.ko:system/lib/modules/ar6000.ko
 
 PRODUCT_COPY_FILES += \
     device/huawei/c8812e/prebuilt/system/wifi/ath6k/athtcmd_ram.bin:system/etc/firmware/ath6k/athtcmd_ram.bin \
