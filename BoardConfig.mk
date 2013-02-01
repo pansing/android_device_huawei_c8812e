@@ -111,8 +111,8 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE	:= 183500800
 BOARD_FLASH_BLOCK_SIZE				:= 131072
 
 # Kernel 
-TARGET_KERNEL_SOURCE				:= kernel/huawei/C8812E
-TARGET_KERNEL_CONFIG				:= shendu_c8812e_defconfig
+TARGET_KERNEL_SOURCE := kernel/huawei/G330D
+TARGET_KERNEL_CONFIG				:= shendu_msm8x25_defconfig
 #TARGET_PREBUILT_KERNEL := device/huawei/c8812e/kernel
 BOARD_KERNEL_CMDLINE				:= androidboot.hardware=huawei loglevel=1
 BOARD_KERNEL_BASE					:= 0x00200000
